@@ -214,33 +214,5 @@ while(canPlaceWordAt(firstWord, startX, startY, firstDirection) === false) {
 }
 ```
 
-## 📊 Algorithm Complexity Analysis
-
-### Time Complexity
-- **Graph Construction**: O(n²×m²) where n = word count, m = average word length
-- **Word Placement**: O(n×i×p) where i = intersections per word, p = placement attempts
-- **Validation**: O(m) per placement attempt
-
-### Space Complexity
-- **Grid Storage**: O(g²) where g = grid size (proportional to total characters)
-- **Graph Storage**: O(n²×i) for all intersection mappings
-
-## 🧪 Testing Scenarios
-
-The algorithm handles various edge cases:
-
-1. **No Valid Intersections**: Automatic puzzle regeneration
-2. **Character Conflicts**: Strict validation prevents mismatched intersections  
-3. **Boundary Violations**: Position calculations include bounds checking
-4. **Adjacent Collisions**: Comprehensive neighbor cell validation
-5. **Multiple Intersections**: Single intersection rule enforcement
-
-## 💡 Core Design Principles
-
-1. **Deterministic Validation**: Every placement follows strict mathematical rules
-2. **Exhaustive Search**: All possible intersections are tried before failure
-3. **Conflict Prevention**: Proactive checking prevents invalid puzzle states
-4. **Graceful Degradation**: Failed attempts trigger complete regeneration
-5. **Optimal Display**: Dynamic centering and scaling for visual quality
 
 
