@@ -408,6 +408,8 @@ function canPlaceWordAt(word, startX, startY, direction, targetPlacedWord = null
         }
         
         if (grid[y][x] === word[i]) {
+            
+            
             validIntersectionFound = true;
             intersectionCount++;
             
@@ -420,20 +422,43 @@ function canPlaceWordAt(word, startX, startY, direction, targetPlacedWord = null
         } else {
             
             if (direction === 'H') {
-                
                 if ((y > 0 && grid[y - 1][x] !== null) || 
-                    (y < grid.length - 1 && grid[y + 1][x] !== null)) {
+                    (y < grid.length - 1 && grid[y + 1][x] !== null))  {
                     console.log(`🚫 Rejected: ${word} would create unintended vertical connection at (${x}, ${y})`);
                     return false;
                 }
+
             } else {
-                
                 if ((x > 0 && grid[y][x - 1] !== null) || 
                     (x < grid[0].length - 1 && grid[y][x + 1] !== null)) {
                     console.log(`🚫 Rejected: ${word} would create unintended horizontal connection at (${x}, ${y})`);
                     return false;
                 }
+                
+                
             }
+        }
+        if(direction === 'H') {
+                    if (i === 0 && x > 0 && grid[y][x - 1] !== null) {
+                    console.log(`🚫 Rejected: ${word} would concatenate with existing word at start (${x}, ${y})`);
+                    return false;
+                }
+                
+                if (i === word.length - 1 && x < grid[0].length - 1 && grid[y][x + 1] !== null) {
+                    console.log(`🚫 Rejected: ${word} would concatenate with existing word at end (${x}, ${y})`);
+                    return false;
+                }
+         }
+         else{
+                if (i === 0 && y > 0 && grid[y - 1][x] !== null) {
+                    console.log(`🚫 Rejected: ${word} would concatenate with existing word at start (${x}, ${y})`);
+                    return false;
+                }
+                
+                if (i === word.length - 1 && y < grid.length - 1 && grid[y + 1][x] !== null) {
+                    console.log(`🚫 Rejected: ${word} would concatenate with existing word at end (${x}, ${y})`);
+                    return false;
+                }
         }
     }
     
